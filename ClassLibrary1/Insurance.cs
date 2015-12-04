@@ -17,7 +17,10 @@ namespace Hospital
         {
 
         }
-
+        public Insurance(string provider)
+        {
+            this.provider = provider;
+        }
         public Insurance(string id, string groupId, string type, string provider)
         {
             this.id = id;

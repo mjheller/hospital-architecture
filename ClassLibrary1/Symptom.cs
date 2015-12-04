@@ -9,6 +9,7 @@ namespace Hospital
     public class Symptom
     {
         string description;
+        public string Description{get {return description;}}
         Symptom equivalentSymptom;
         string severity;
 

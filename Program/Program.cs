@@ -19,12 +19,12 @@ namespace Program
             List<Doctor> doctors = new List<Doctor>();
             doctors.Add(Phil);
 
-            Patient Bob = new Patient("Bob", 32, new List<Symptom>() { new Symptom("Explosive diarrhea") }, new Insurance("X3564354", "1234678", "Good Insurance", "Blue Cross/Blue Shield"), Phil);
+            //Patient Bob = new Patient("Bob", 32, new List<Symptom>() { new Symptom("Explosive diarrhea") }, new Insurance("X3564354", "1234678", "Good Insurance", "Blue Cross/Blue Shield"), Phil);
 
-            Patient Jane = new Patient("Jane", 45, new List<Symptom>() { new Symptom("Spontaneous combustion") }, new Insurance("T3243DSE", "46833693", "Bad Insurance", "Insurance That Dan Provided"), Phil);
+            //Patient Jane = new Patient("Jane", 45, new List<Symptom>() { new Symptom("Spontaneous combustion") }, new Insurance("T3243DSE", "46833693", "Bad Insurance", "Insurance That Dan Provided"), Phil);
 
-            patients.Add(Bob);
-            patients.Add(Jane);
+            //patients.Add(Bob);
+            //patients.Add(Jane);
 
             DoctorsOffice doctorsOffice = new DoctorsOffice(doctors);
 

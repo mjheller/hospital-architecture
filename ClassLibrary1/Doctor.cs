@@ -15,6 +15,10 @@ namespace Hospital
         {
 
         }
+        public override string ToString()
+        {
+            return base.name;//.ToString();
+        }
 
         public Appointment getAppointmentByPatient(string name)
         {

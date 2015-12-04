@@ -98,7 +98,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 257);
+            this.ClientSize = new System.Drawing.Size(394, 282);
             this.Controls.Add(this.ChangeDoctor);
             this.Controls.Add(this.ChangeAppointment);
             this.Controls.Add(this.ScheduleAppointment);

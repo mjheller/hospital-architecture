@@ -8,7 +8,7 @@ namespace Hospital
 {
     public class Patient : Person
     {
-        public List<Symptom> symptoms;
+        public Symptom symptom;
         public Insurance insurance;
         public bool covered;
         public Doctor preferredDoctor;
@@ -16,9 +16,9 @@ namespace Hospital
         public TimeSpan preferredTime;
         public Random random;
 
-        public Patient(string name, int age, List<Symptom> symptoms, Insurance insurance, Doctor preferredDoctor) : base(name, age)
+        public Patient(string name, int age, Symptom symptom, Insurance insurance, Doctor preferredDoctor) : base(name, age)
         {
-            this.symptoms = symptoms;
+            this.symptom = symptom;
             this.insurance = insurance;
             this.preferredDoctor = preferredDoctor;
             this.random = new Random(DateTime.Now.Millisecond);

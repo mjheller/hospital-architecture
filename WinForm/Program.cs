@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Hospital;
 
 namespace WinForm
 {
@@ -16,7 +17,11 @@ namespace WinForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MedicalWizard());
+            // Application.Run(new MedicalWizard());
+           
+
+            Application.Run(new PatientInfo());
         }
     }
 }
+

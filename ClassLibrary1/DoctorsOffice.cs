@@ -5,20 +5,69 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Scheduler;
+using System.Diagnostics;
 
 namespace Hospital
 {
     public class DoctorsOffice
     {
-        List<Doctor> doctors;
-        public WaitingRoom waitingRoom;
+        public List<Doctor> doctors;
+        //public List<Doctor> Doctors{ get { return doctors; } }
+        public List<TimeSpan> initialTimeIntervals;
+        //public WaitingRoom waitingRoom;
         public static int appointmentNumber = 0;
         public FileWriter fileWriter = new FileWriter();
 
         public DoctorsOffice(List<Doctor> doctors)
         {
             this.doctors = doctors;
-            this.waitingRoom = new WaitingRoom();
+            this.initialTimeIntervals = GetInitialTimeIntervals();
+            //this.waitingRoom = new WaitingRoom();
+        }
+
+        public Doctor SearchDoctors(string name)
+        {
+            return doctors.Find(item => item.name == name);
+        }
+
+        public List<TimeSpan> GetInitialTimeIntervals()
+        {
+            DateTime exampleDate = new DateTime(2015, 12, 1);
+
+            DateTime startTime = exampleDate.Add(new TimeSpan(8, 0, 0));
+            DateTime endTime = exampleDate.Add(new TimeSpan(17, 0, 0));
+
+            List<TimeSpan> times = new List<TimeSpan>();
+
+            for (DateTime time = startTime; time < endTime; time = time.AddMinutes(30))
+            {
+                Trace.Write(time);
+                times.Add(time.TimeOfDay);
+            }
+
+            return times;
+        }
+
+        public List<DateTime> GetFreeTimes(DateTime search, string doctorName)
+        {
+            Doctor doctor = SearchDoctors(doctorName);
+            List<DateTime> output = new List<DateTime>();
+            List<TimeSpan> remainingTimes = initialTimeIntervals;
+            foreach (Appointment appointment in doctor.calendar)
+            {
+                DateTime date = appointment.Time.Date;
+                if (date == search)
+                {
+                    remainingTimes.Remove(appointment.Time.TimeOfDay);
+                }
+            }
+
+            foreach (TimeSpan time in remainingTimes)
+            {
+                output.Add(search.Add(time));
+            }
+
+            return output;
         }
 
         public void ReceiveAppointment(Patient patient)
