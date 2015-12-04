@@ -34,7 +34,6 @@
             this.PatientInfoLabel = new System.Windows.Forms.Label();
             this.FNameLabel = new System.Windows.Forms.Label();
             this.LNameLabel = new System.Windows.Forms.Label();
-            this.insuranceListBox = new System.Windows.Forms.ListBox();
             this.FNametextBox = new System.Windows.Forms.TextBox();
             this.LNametextBox = new System.Windows.Forms.TextBox();
             this.InsuranceListBoxLabel = new System.Windows.Forms.Label();
@@ -55,6 +54,9 @@
             this.ageUpDown = new System.Windows.Forms.NumericUpDown();
             this.symptomsLabel = new System.Windows.Forms.Label();
             this.symptomsComboBox = new System.Windows.Forms.ComboBox();
+            this.InsuranceComboBox = new System.Windows.Forms.ComboBox();
+            this.insuranceIDLabel = new System.Windows.Forms.Label();
+            this.insuranceIDTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ageUpDown)).BeginInit();
             this.SuspendLayout();
@@ -108,26 +110,6 @@
             this.LNameLabel.TabIndex = 5;
             this.LNameLabel.Text = "Last Name:";
             // 
-            // insuranceListBox
-            // 
-            this.insuranceListBox.FormattingEnabled = true;
-            this.insuranceListBox.Items.AddRange(new object[] {
-            "Select No Insurance",
-            "Aetna Group",
-            "Assurant Health",
-            "BlueCross BlueShield",
-            "DanCare",
-            "Humana",
-            "IHC Group",
-            "Kaiser Permanente",
-            "ObamaCare",
-            "TrumpCare",
-            "UnitedHealthOne"});
-            this.insuranceListBox.Location = new System.Drawing.Point(197, 250);
-            this.insuranceListBox.Name = "insuranceListBox";
-            this.insuranceListBox.Size = new System.Drawing.Size(200, 43);
-            this.insuranceListBox.TabIndex = 6;
-            // 
             // FNametextBox
             // 
             this.FNametextBox.Location = new System.Drawing.Point(197, 160);
@@ -165,16 +147,17 @@
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(441, 372);
+            this.backButton.Location = new System.Drawing.Point(441, 384);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(137, 23);
             this.backButton.TabIndex = 11;
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(598, 372);
+            this.nextButton.Location = new System.Drawing.Point(598, 384);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(137, 23);
             this.nextButton.TabIndex = 12;
@@ -220,7 +203,7 @@
             this.availableTimesList.Location = new System.Drawing.Point(553, 209);
             this.availableTimesList.Name = "availableTimesList";
             this.availableTimesList.ScrollAlwaysVisible = true;
-            this.availableTimesList.Size = new System.Drawing.Size(200, 147);
+            this.availableTimesList.Size = new System.Drawing.Size(200, 160);
             this.availableTimesList.TabIndex = 16;
             this.availableTimesList.SelectedIndexChanged += new System.EventHandler(this.availableTimesList_SelectedIndexChanged);
             // 
@@ -248,7 +231,7 @@
             // 
             this.chooseDocLabel.AutoSize = true;
             this.chooseDocLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseDocLabel.Location = new System.Drawing.Point(60, 301);
+            this.chooseDocLabel.Location = new System.Drawing.Point(60, 304);
             this.chooseDocLabel.Name = "chooseDocLabel";
             this.chooseDocLabel.Size = new System.Drawing.Size(120, 20);
             this.chooseDocLabel.TabIndex = 19;
@@ -257,7 +240,7 @@
             // drListBox
             // 
             this.drListBox.FormattingEnabled = true;
-            this.drListBox.Location = new System.Drawing.Point(197, 301);
+            this.drListBox.Location = new System.Drawing.Point(197, 307);
             this.drListBox.Name = "drListBox";
             this.drListBox.Size = new System.Drawing.Size(200, 56);
             this.drListBox.TabIndex = 20;
@@ -345,11 +328,49 @@
             this.symptomsComboBox.TabIndex = 26;
             this.symptomsComboBox.SelectedIndexChanged += new System.EventHandler(this.symptomsComboBox_SelectedIndexChanged);
             // 
+            // InsuranceComboBox
+            // 
+            this.InsuranceComboBox.FormattingEnabled = true;
+            this.InsuranceComboBox.Items.AddRange(new object[] {
+            "Acadia Insurance Co",
+            "BlueCross BlueShield",
+            "DanCare",
+            "Kaiser Permanente",
+            "ObamaCare",
+            "TrumpCare",
+            "UnitedHealthOne",
+            "WPS"});
+            this.InsuranceComboBox.Location = new System.Drawing.Point(197, 249);
+            this.InsuranceComboBox.Name = "InsuranceComboBox";
+            this.InsuranceComboBox.Size = new System.Drawing.Size(200, 21);
+            this.InsuranceComboBox.TabIndex = 27;
+            this.InsuranceComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // insuranceIDLabel
+            // 
+            this.insuranceIDLabel.AutoSize = true;
+            this.insuranceIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.insuranceIDLabel.Location = new System.Drawing.Point(76, 276);
+            this.insuranceIDLabel.Name = "insuranceIDLabel";
+            this.insuranceIDLabel.Size = new System.Drawing.Size(105, 20);
+            this.insuranceIDLabel.TabIndex = 28;
+            this.insuranceIDLabel.Text = "Insurance ID:";
+            // 
+            // insuranceIDTextBox
+            // 
+            this.insuranceIDTextBox.Location = new System.Drawing.Point(197, 278);
+            this.insuranceIDTextBox.Name = "insuranceIDTextBox";
+            this.insuranceIDTextBox.Size = new System.Drawing.Size(200, 20);
+            this.insuranceIDTextBox.TabIndex = 29;
+            // 
             // PatientInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 405);
+            this.ClientSize = new System.Drawing.Size(794, 419);
+            this.Controls.Add(this.insuranceIDTextBox);
+            this.Controls.Add(this.insuranceIDLabel);
+            this.Controls.Add(this.InsuranceComboBox);
             this.Controls.Add(this.symptomsComboBox);
             this.Controls.Add(this.symptomsLabel);
             this.Controls.Add(this.ageUpDown);
@@ -370,7 +391,6 @@
             this.Controls.Add(this.InsuranceListBoxLabel);
             this.Controls.Add(this.LNametextBox);
             this.Controls.Add(this.FNametextBox);
-            this.Controls.Add(this.insuranceListBox);
             this.Controls.Add(this.LNameLabel);
             this.Controls.Add(this.FNameLabel);
             this.Controls.Add(this.PatientInfoLabel);
@@ -392,7 +412,6 @@
         private System.Windows.Forms.Label PatientInfoLabel;
         private System.Windows.Forms.Label FNameLabel;
         private System.Windows.Forms.Label LNameLabel;
-        private System.Windows.Forms.ListBox insuranceListBox;
         private System.Windows.Forms.TextBox FNametextBox;
         private System.Windows.Forms.TextBox LNametextBox;
         private System.Windows.Forms.Label InsuranceListBoxLabel;
@@ -413,5 +432,8 @@
         private System.Windows.Forms.NumericUpDown ageUpDown;
         private System.Windows.Forms.Label symptomsLabel;
         private System.Windows.Forms.ComboBox symptomsComboBox;
+        private System.Windows.Forms.ComboBox InsuranceComboBox;
+        private System.Windows.Forms.Label insuranceIDLabel;
+        private System.Windows.Forms.TextBox insuranceIDTextBox;
     }
 }

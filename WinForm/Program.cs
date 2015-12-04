@@ -15,9 +15,10 @@ namespace WinForm
         [STAThread]
         static void Main()
         {
+            //MedicalWizard medicalWizard = new MedicalWizard();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            // Application.Run(new MedicalWizard());
+            //Application.Run(new MedicalWizard());
            
 
             Application.Run(new PatientInfo());

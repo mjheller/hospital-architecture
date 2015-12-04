@@ -27,11 +27,6 @@ namespace Hospital
             this.doctor = patientDoctor;
             this.appointment = appointment;
             this.insurance = insure;
-        }
-
-        public void updateFields()
-        {
-            throw new NotImplementedException();
-        }
+        }    
     }
 }

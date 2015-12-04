@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler", "ClassLibrary2\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForm", "WinForm\WinForm.csproj", "{FA8D4279-A1F1-4842-951A-18A61E4803EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "Program\Program.csproj", "{E0C531ED-DEAC-4CD6-A0E3-6FED76C42D79}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{FA8D4279-A1F1-4842-951A-18A61E4803EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA8D4279-A1F1-4842-951A-18A61E4803EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA8D4279-A1F1-4842-951A-18A61E4803EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0C531ED-DEAC-4CD6-A0E3-6FED76C42D79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0C531ED-DEAC-4CD6-A0E3-6FED76C42D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0C531ED-DEAC-4CD6-A0E3-6FED76C42D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0C531ED-DEAC-4CD6-A0E3-6FED76C42D79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,24 +15,29 @@ namespace WinForm
     public partial class PatientInfo : Form
     {
 
-        //List<Doctor> doctors;
+        
         List<Symptom> symptomList;
         DoctorsOffice doctorsOffice;
-        //Doctor preferredDoc;
+        DateTime date;
+        
         public PatientInfo()
         {
-
             InitializeComponent();
-            Doctor Phil = new Doctor("Phil MD", 40);
-            Doctor Oz = new Doctor("Oz MD", 60);
-            Doctor Jennifer = new Doctor("Jennifer MD", 35);
-            Doctor Benjamin = new Doctor("Benjamin MD", 50);
-            Doctor Dave = new Doctor("Dave MD", 30);
-            Doctor Andrew = new Doctor("Andrew MD", 40);
+            Doctor Phil = new Doctor(new ContactInformation { FirstName = "Phil", LastName = "Steele" });
+            Doctor Jane = new Doctor(new ContactInformation { FirstName = "Jane", LastName = "Alexander" });
+            Doctor Barry = new Doctor(new ContactInformation { FirstName = "Barry", LastName = "Hall" });
+            Doctor Jennifer = new Doctor(new ContactInformation { FirstName = "Jennifer", LastName = "Dock" });
+            Doctor Benjamin = new Doctor(new ContactInformation { FirstName = "Benjamin", LastName = "Franklyn" });
+            Doctor Luv = new Doctor(new ContactInformation { FirstName = "Luv", LastName = "DocTa" });
             List<Doctor> doctors = new List<Doctor>();
-            doctors.Add(Phil); doctors.Add(Oz); doctors.Add(Jennifer); doctors.Add(Benjamin); doctors.Add(Dave);  doctors.Add(Andrew);
+            doctors.Add(Phil); doctors.Add(Jane); doctors.Add(Barry); doctors.Add(Jennifer); doctors.Add(Benjamin);  doctors.Add(Luv);
             this.doctorsOffice = new DoctorsOffice(doctors);
+            this.date = DateTime.Now.Date;
+            
+            //this.drListBox.SelectedIndexChanged -= this.drListBox_SelectedIndexChanged;
             this.drListBox.DataSource = doctorsOffice.doctors;
+            //this.drListBox.SelectedIndex = -1; //Keeps item from automatically being selected on bootup
+                  
             this.symptomList = new List<Symptom>{ };
 
         }
@@ -41,33 +46,36 @@ namespace WinForm
 
         private void nextButton_Click(object sender, EventArgs e)
         {
+            //try:
             string firstName = FNametextBox.Text;
             string lastName = LNametextBox.Text;
             int age = Convert.ToInt32(ageUpDown.Value);
-            string provider = insuranceListBox.Text;
+            string insuranceProvider = InsuranceComboBox.Text;
+            string insuranceID = insuranceIDTextBox.Text;
             string docName = drListBox.Text;
             Symptom symptom = new Symptom(symptomsComboBox.SelectedItem.ToString());
             DateTime appointmentDate = dateTimePicker.Value;
-            object appointmentTime = availableTimesList.SelectedItem;
+            DateTime appointmentdateTime = Convert.ToDateTime(availableTimesList.Text);
+            TimeSpan appointmentTime = appointmentdateTime.TimeOfDay;
             Doctor preferredDoc = this.doctorsOffice.SearchDoctors(docName);
-            
 
-            /* if (firstName == null || lastName == null)
-             {
-                 MessageBox.Show("Cannot proceed, please enter all the required information");
-             }*/
-
-
-            Patient New = new Patient(firstName + " " + lastName, age, symptom, new Insurance(provider), preferredDoc);
-            //changed symptom List into single symptom for debugging
-            /*foreach (Doctor doc in doctorsOffice.doctors)
+            // while (firstName == "" || lastName == "" || appointmentTime == null)
+            //    {
+            //   MessageBox.Show("Cannot proceed, please enter all the required information");
+            //  }
+            ContactInformation contactInformation = new ContactInformation()
             {
-                if (doc.name == docName)
-                {
-                    Patient New = new Patient(firstName + " " + lastName, age, symptom, new Insurance(provider), doc);
-                }
-            }
-            */
+                FirstName = firstName,
+                LastName = lastName,
+                Age = age
+                // Gender = haventBindedYet
+            };
+
+            Patient user = new Patient(contactInformation, symptom, new Insurance(insuranceProvider,insuranceID), preferredDoc,appointmentDate,appointmentTime);
+            //Need to now read from file for available times to make sure that taken appointment times do not show 
+            doctorsOffice.ReceiveAppointment(user);
+
+
             MessageBox.Show("Success!!");
         }
 
@@ -79,13 +87,18 @@ namespace WinForm
         private void drListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox dr = (ListBox)sender;
+            List<DateTime> freeTimes = doctorsOffice.GetFreeTimes(this.date, dr.Text);
+            availableTimesList.DataSource = freeTimes;
+            //MessageBox.Show(dateTimePicker.Text);
             //send to availableTimesList to display the times for that doctor on the specific Date
         }
 
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            DateTimePicker dateItem = (DateTimePicker)sender;
-            string date = dateItem.Text;
+            DateTime date = Convert.ToDateTime(dateTimePicker.Text);
+            this.date = date;
+            List<DateTime> freeTimes = doctorsOffice.GetFreeTimes(this.date, drListBox.Text);
+            availableTimesList.DataSource = freeTimes;
 
         }
 
@@ -93,6 +106,18 @@ namespace WinForm
         {
             
             
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+
+            
+            //PatientInfo.Close();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

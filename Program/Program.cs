@@ -12,34 +12,34 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            List<Patient> patients = new List<Patient>();
+            //List<patient> patients = new list<patient>();
 
-            Doctor Phil = new Doctor("Phil", 40);
+            //doctor phil = new doctor("phil", 40);
 
-            List<Doctor> doctors = new List<Doctor>();
-            doctors.Add(Phil);
+            //list<doctor> doctors = new list<doctor>();
+            //doctors.add(phil);
 
-            //Patient Bob = new Patient("Bob", 32, new List<Symptom>() { new Symptom("Explosive diarrhea") }, new Insurance("X3564354", "1234678", "Good Insurance", "Blue Cross/Blue Shield"), Phil);
+            //patient bob = new patient("bob", 32, new list<symptom>() { new symptom("explosive diarrhea") }, new insurance("x3564354", "1234678", "good insurance", "blue cross/blue shield"), phil);
 
-            //Patient Jane = new Patient("Jane", 45, new List<Symptom>() { new Symptom("Spontaneous combustion") }, new Insurance("T3243DSE", "46833693", "Bad Insurance", "Insurance That Dan Provided"), Phil);
+            //patient jane = new patient("jane", 45, new list<symptom>() { new symptom("spontaneous combustion") }, new insurance("t3243dse", "46833693", "bad insurance", "insurance that dan provided"), phil);
 
-            //patients.Add(Bob);
-            //patients.Add(Jane);
+            //patients.add(bob);
+            //patients.add(jane);
 
-            DoctorsOffice doctorsOffice = new DoctorsOffice(doctors);
+            //DoctorsOffice doctorsOffice = new DoctorsOffice(doctors);
 
-            foreach (Patient patient in patients)
-            {
-                doctorsOffice.ReceiveAppointment(patient);
-            }
+            //foreach (Patient patient in patients)
+            //{
+            //    doctorsOffice.ReceiveAppointment(patient);
+            //}
 
-            Appointment apt = Phil.getAppointmentByID(1);
+            //Appointment apt = Phil.getAppointmentByID(1);
 
-            Console.WriteLine(apt.Name);
-            Console.WriteLine(apt.Patient);
-            Console.WriteLine(apt.Doctor);
-            Console.WriteLine(apt.ID);
-            Console.WriteLine(apt.Time.ToString("yyyy-MM-dd HH:mm"));
+            //Console.WriteLine(apt.Name);
+            //Console.WriteLine(apt.Patient);
+            //Console.WriteLine(apt.Doctor);
+            //Console.WriteLine(apt.ID);
+            //Console.WriteLine(apt.Time.ToString("yyyy-MM-dd HH:mm"));
         }
     }
 }

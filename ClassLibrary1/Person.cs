@@ -9,16 +9,17 @@ namespace Hospital
 {
     public abstract class Person
     {
-        public string name;
-        public int age;
-        protected CalendarGenerator generator = new CalendarGenerator();
-        public List<Appointment> calendar = new List<Appointment>();
-        public List<Schedule> schedules = new List<Schedule>();
+        public ContactInformation contactInformation;
+        protected CalendarGenerator generator;
+        public List<Appointment> calendar;
+        public List<Schedule> schedules;
 
-        public Person(string name, int age)
+        public Person(ContactInformation contactInformation)
         {
-            this.name = name;
-            this.age = age;
+            this.contactInformation = contactInformation;
+            this.generator = new CalendarGenerator();
+            this.calendar = new List<Appointment>();
+            this.schedules = new List<Schedule>();
         }
 
         public void CreateNewSingleSchedule(string Name, TimeSpan TimeOfDay, DateTime Date)
@@ -35,11 +36,11 @@ namespace Hospital
 
         public void GenerateCalendar()
         {
-            Period period = new Period(new DateTime(2015, 1, 1), new DateTime(2015, 12, 31));
+            Period period = new Period(new DateTime(2015, 1, 1), new DateTime(2016, 12, 31));
             calendar = generator.GenerateCalendar(period, schedules);
         }
 
-        public Appointment getAppointmentByID(int id)
+        public Appointment GetAppointmentByID(int id)
         {
             return calendar.Find(item => item.ID == id);
         }

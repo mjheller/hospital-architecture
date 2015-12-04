@@ -10,14 +10,18 @@ namespace Hospital
 
     public class Doctor : Person
     {
+        public List<TimeSpan> initialTimeIntervals;
+        public CalendarFileWriter scheduleWriter;
 
-        public Doctor(string name, int age) : base(name, age)
+        public Doctor(ContactInformation contactInformation) : base(contactInformation)
         {
-
+            this.scheduleWriter = new CalendarFileWriter(contactInformation.FirstName + "_" + contactInformation.LastName);
+            this.calendar = scheduleWriter.GetCurrentCalendar();
         }
+
         public override string ToString()
         {
-            return base.name;//.ToString();
+            return base.contactInformation.Name;
         }
 
         public Appointment getAppointmentByPatient(string name)
@@ -25,6 +29,9 @@ namespace Hospital
             return calendar.Find(item => item.Patient == name);
         }
 
+        public void updateCalendar()
+        {
+            scheduleWriter.WriteSchedule(calendar);
+        }
     }
 }
-

@@ -19,7 +19,9 @@ namespace WinForm
 
         private void ScheduleAppointment_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Testing 123");
+            PatientInfo patientInfo = new PatientInfo();
+            patientInfo.Show();
+            
         }
     }
 }

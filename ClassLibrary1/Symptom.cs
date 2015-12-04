@@ -8,9 +8,7 @@ namespace Hospital
 {
     public class Symptom
     {
-        string description;
-        public string Description{get {return description;}}
-        Symptom equivalentSymptom;
+        string description;       
         string severity;
 
         public Symptom(string description)
@@ -21,13 +19,6 @@ namespace Hospital
         public Symptom(string description, string severity)
         {
             this.description = description;
-            this.severity = severity;
-        }
-
-        public Symptom(string description, Symptom equivalentSymptom, string severity)
-        {
-            this.description = description;
-            this.equivalentSymptom = equivalentSymptom;
             this.severity = severity;
         }
     }
